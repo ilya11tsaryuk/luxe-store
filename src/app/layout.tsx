@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "./ui/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="min-h-dvh">
-      <body className={`${inter.className} min-h-dvh`}>{children}</body>
+      <body className={`${inter.className} min-h-dvh`}>
+        <Header />
+        <div className="flex min-h-[calc(100dvh-64px)] flex-col">
+          <main className="flex-1">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }
