@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const ProductElement = (product: ProductType) => {
+    console.log(product, 'product in elem')
     return (
         <li data-testid="ProductElement" className="hover:bg-neutral-100 rounded-md">
-            <Link href={`/${product.category}/${product.id}`} key={product.id}>
+            <Link href={`${product.category}/${product.id}`} key={product.id}>
                 <div>
                     <Image
                         className="p-2"

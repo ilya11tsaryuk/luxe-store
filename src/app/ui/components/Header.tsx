@@ -3,10 +3,12 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { MenuButton } from "./MenuButton";
 import { SearchBar } from "./SearchBar";
 import { NavList } from "./nav/NavList";
-import { IconButton } from "@mui/material";
+import { Badge, IconButton } from "@mui/material";
+import { CustomBadge } from "./atoms/CustomBadge";
 
 export const Header = () => {
-
+    const items = [1, 3, 5] // id of products
+    // get items from cookie
     return (
         <header className="sticky top-0 z-20 bg-neutral-100 backdrop-blur-md">
             <div className="mx-auto max-w-7xl px-3 sm:px-8">
@@ -20,9 +22,11 @@ export const Header = () => {
                         <div className="ml-auto md:ml-0 flex gap-8">
                             <MenuButton />
                             <Link className="" href={'/basket'}>
-                                <IconButton>
-                                    <ShoppingBagOutlinedIcon />
-                                </IconButton>
+                                <CustomBadge badgeContent={items.length} color="secondary">
+                                    <IconButton>
+                                        <ShoppingBagOutlinedIcon />
+                                    </IconButton>
+                                </CustomBadge>
                             </Link>
                         </div>
                     </nav>

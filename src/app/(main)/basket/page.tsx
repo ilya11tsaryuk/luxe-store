@@ -1,5 +1,8 @@
-export default function Page(params) {
+import { products } from "@/app/constants";
+import { ProductsList } from "@/app/ui/components/ProductsList";
+
+export default function Page() {
     return (
-        <div>basket page</div>
+        <ProductsList products={products} />
     )
 };

@@ -2,18 +2,20 @@ import { notFound } from "next/navigation";
 import { ProductType } from "@/app/types";
 import { products } from "@/app/constants";
 import { ProductPage } from "@/app/pages/ProductPage";
+import { getProductById } from "@/app/api/products";
 // TODO generate metadata
 
 export default async function Page({
     params,
     searchParams,
 }: {
-    params: { id: string, category: string };
+    params: { id: string };
     searchParams: { variant?: string };
 }) {
-    const product: ProductType = products[0]
+    const { data: products, error } = await getProductById(Number(params.id))
+    const product = products[0] || {}
     const selectedValue = Number(searchParams.variant)
-    if (!product) {
+    if (error) {
         notFound();
     }
 

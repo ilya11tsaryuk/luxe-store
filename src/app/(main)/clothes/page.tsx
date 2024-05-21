@@ -1,5 +1,15 @@
-export default function Page() {
+import { getProductsByCategory } from "@/app/api/products";
+import { clothesCategory, products } from "@/app/constants";
+import { ProductsList } from "@/app/ui/components/ProductsList";
+import { notFound } from "next/navigation";
+
+export default async function Page() {
+    const { data, error } = await getProductsByCategory(clothesCategory)
+
+    if (error) {
+        notFound()
+    }
     return (
-        <div>clothes page</div>
+        <ProductsList products={data} />
     )
 };

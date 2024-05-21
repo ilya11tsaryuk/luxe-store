@@ -7,7 +7,6 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 export const ProductPage = (props: { product: ProductType, selectedValue: number }) => {
     const { product, selectedValue } = props
-
     async function addItem() {
         "use server";
         console.log(selectedValue, 'selec')

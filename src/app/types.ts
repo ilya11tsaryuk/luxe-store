@@ -5,7 +5,8 @@ export type ProductType = {
     price: number,
     url: string,
     variants?: number[],
-    description?: string
+    description?: string,
+    popular?: boolean
 }
 
 export type ProductListType = ProductType[]
