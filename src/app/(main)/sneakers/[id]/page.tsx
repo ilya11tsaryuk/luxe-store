@@ -13,7 +13,7 @@ export default async function Page({
 }) {
     const product: ProductType = products[0]
     // get sneaker by params
-    const selectedValue = Number(searchParams.variant)
+    const selectedValue = searchParams.variant
     if (!product) {
         notFound();
     }

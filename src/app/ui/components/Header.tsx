@@ -5,10 +5,13 @@ import { SearchBar } from "./SearchBar";
 import { NavList } from "./nav/NavList";
 import { Badge, IconButton } from "@mui/material";
 import { CustomBadge } from "./atoms/CustomBadge";
+import { cookies } from "next/headers";
 
 export const Header = () => {
-    const items = [1, 3, 5] // id of products
-    // get items from cookie
+    const countOfProducts = cookies()
+        .getAll()
+        .filter((cookie) => cookie.name.includes('item')).length
+
     return (
         <header className="sticky top-0 z-20 bg-neutral-100 backdrop-blur-md">
             <div className="mx-auto max-w-7xl px-3 sm:px-8">
@@ -22,7 +25,7 @@ export const Header = () => {
                         <div className="ml-auto md:ml-0 flex gap-8">
                             <MenuButton />
                             <Link className="" href={'/basket'}>
-                                <CustomBadge badgeContent={items.length} color="secondary">
+                                <CustomBadge badgeContent={countOfProducts} color="secondary">
                                     <IconButton>
                                         <ShoppingBagOutlinedIcon />
                                     </IconButton>

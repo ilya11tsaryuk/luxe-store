@@ -14,7 +14,7 @@ export default async function Page({
 }) {
     const { data: products, error } = await getProductById(Number(params.id))
     const product = products[0] || {}
-    const selectedValue = Number(searchParams.variant)
+    const selectedValue = searchParams.variant || ''
     if (error) {
         notFound();
     }

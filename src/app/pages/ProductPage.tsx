@@ -4,17 +4,16 @@ import { VariantSelector } from "../ui/components/VariantSelector";
 import { CustomButton } from "../ui/components/atoms/CustomButton";
 import { redirect } from "next/navigation";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { cookies } from "next/headers";
 
-export const ProductPage = (props: { product: ProductType, selectedValue: number }) => {
+export const ProductPage = (props: { product: ProductType, selectedValue: string }) => {
     const { product, selectedValue } = props
     async function addItem() {
         "use server";
-        console.log(selectedValue, 'selec')
-        // TODO save to cookie
-        // revalidatePath("/");
+        cookies().set(`${product.id}-item`, selectedValue)
         redirect("/");
-
     }
+
     return (
         <section className="mx-auto grid max-w-7xl p-8">
             <form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" action={addItem}>

@@ -35,3 +35,40 @@ export const getProductById = async (id: number) => {
 
     return res
 }
+
+export const getSelectedProducts = async (ids: number[]) => {
+    const promises = ids.map(async (id) => {
+        const { data, error } = await supabase
+            .from('products')
+            .select('*')
+            .eq('id', id);
+
+        if (error) {
+            notFound()
+        }
+
+        return data;
+    });
+
+    const results = await Promise.all(promises);
+    const products = results.filter(data => data !== null && data.length > 0).flat();
+
+    return products;
+}
+
+export const getSearchProducts = async (query: string) => {
+
+    if (query) {
+        const res = await supabase
+            .from('products')
+            .select('*')
+            .ilike('name', `%${query}%`);
+        return res
+    } else {
+        const res = await supabase
+            .from('products')
+            .select('*')
+        return res
+    }
+
+}

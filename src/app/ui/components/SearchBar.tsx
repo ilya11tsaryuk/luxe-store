@@ -1,12 +1,13 @@
-import { redirect } from "next/navigation";
+'use client'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { SearchInput } from './SearchInput';
+import { permanentRedirect, redirect } from 'next/navigation';
 
 export const SearchBar = () => {
     async function onSubmit(formData: FormData) {
-        "use server";
         const search = formData.get("search") as string;
         if (search && search.trim().length > 0) {
-            // redirect(`/${encodeURIComponent(channel)}/search?query=${encodeURIComponent(search)}`);
+            permanentRedirect(`/search?query=${search}`)
         }
     }
 
@@ -14,18 +15,10 @@ export const SearchBar = () => {
         <form
             action={onSubmit}
             className="ml-auto flex rounded-md w-full px-2 py-1 relative items-center"
-        // className="group relative my-2 flex w-full items-center justify-items-center text-sm lg:w-80"
         >
             <label className="w-full">
                 <span className="sr-only">search for products</span>
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search for products..."
-                    autoComplete="on"
-                    required
-                    className="h-10 w-full rounded-md border border-neutral-300 bg-transparent bg-white px-4 py-2 pr-10 text-sm text-black placeholder:text-neutral-500 focus:border-black focus:ring-black"
-                />
+                <SearchInput />
             </label>
             <div className="absolute  right-1">
                 <button

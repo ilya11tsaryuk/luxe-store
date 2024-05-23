@@ -1,8 +1,18 @@
-import { products } from "@/app/constants";
-import { ProductsList } from "@/app/ui/components/ProductsList";
+import { getSelectedProducts } from "@/app/api/products";
+import { ShoppingBagList } from "@/app/pages/ShoppingBagList";
+import { cookies } from "next/headers";
 
-export default function Page() {
+export default async function Page() {
+    const productsListId = cookies()
+        .getAll()
+        .filter((cookie) => cookie.name.includes('item'))
+        .map((item) => {
+            const id = Number(item.name.replace('-item', ''))
+            return id
+        })
+
+    const products = await getSelectedProducts(productsListId)
     return (
-        <ProductsList products={products} />
+        <ShoppingBagList products={products} />
     )
 };
