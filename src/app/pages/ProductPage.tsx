@@ -21,8 +21,8 @@ export const ProductPage = (props: { product: ProductType, selectedValue: string
                     <Image
                         priority={true}
                         alt={product.name ?? ""}
-                        width={1024}
-                        height={1024}
+                        width={512}
+                        height={512}
                         src={product.url}
                     />
                 </div>
