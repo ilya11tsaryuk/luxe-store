@@ -1,5 +1,5 @@
 import { getProductsByCategory } from "@/app/api/products";
-import { products, sneakersCategory } from "@/app/constants";
+import { sneakersCategory } from "@/app/constants";
 import { ProductsList } from "@/app/ui/components/ProductsList";
 import { notFound } from "next/navigation";
 
