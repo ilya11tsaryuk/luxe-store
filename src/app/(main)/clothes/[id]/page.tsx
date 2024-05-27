@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { ProductType } from "@/app/types";
-import { products } from "@/app/constants";
 import { ProductPage } from "@/app/pages/ProductPage";
 import { getProductById } from "@/app/api/products";
 // TODO generate metadata
